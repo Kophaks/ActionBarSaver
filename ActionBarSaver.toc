@@ -2,6 +2,6 @@
 ## Title: Action Bar Saver
 ## Notes: Saves and restores your action bars
 ## Author: Hosq
-## SavedVariables: ActionBarSaverDB
+## SavedVariablesPerCharacter: ActionBarSaverDB
 ActionBarSaver.xml
 ActionBarSaver.lua

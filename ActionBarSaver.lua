@@ -156,6 +156,7 @@ function ABS_RestoreSuperMacro(id)
 end
 
 function ABS_RestoreItem(id)
+	local itemName, link
 	for i = 0,NUM_BAG_FRAMES do
 		for j = 1,MAX_CONTAINER_ITEMS do
 			link = GetContainerItemLink(i,j);
@@ -168,6 +169,20 @@ function ABS_RestoreItem(id)
 						PlaceAction(id)
 						return
 					end
+				end
+			end
+		end
+	end
+	for i = 1,23 do
+		link = GetInventoryItemLink("player",i);
+		if ( link ) then
+			itemName = gsub(link,"^.*%[(.*)%].*$","%1");
+			if itemNames[id] then
+				if itemName == itemNames[id][1] then
+					--DEFAULT_CHAT_FRAME:AddMessage( id.." = "..itemNames[id][1].." bag: "..i.." slot: "..j);
+					PickupInventoryItem(i);
+					PlaceAction(id)
+					return
 				end
 			end
 		end
@@ -191,6 +206,8 @@ SlashCmdList["ABS"] = function(msg)
 		local _,_,cmd, arg = string.find(msg,"(%a+)%s(.*)")
 		cmd = string.lower(cmd or "")
 		arg = string.lower(arg or "")
+		cmd = string.gsub(cmd, "%s+", "")
+		arg = string.gsub(arg, "%s+", "")
 		
 		if( cmd == "save" and arg ~= "" ) then
 			DEFAULT_CHAT_FRAME:AddMessage( "Saving current actionbars as "..arg );
