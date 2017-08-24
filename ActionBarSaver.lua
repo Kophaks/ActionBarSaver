@@ -13,13 +13,13 @@ function ABS_SaveBars(save)
 	macroNames = {}
 	superMacroNames = {}
 	itemNames = {}
-	local tooltip=ABS_Tooltip;
+	local tooltip=getglobal("ABS_Tooltip");
 	tooltip:SetOwner(UIParent, "ANCHOR_NONE");
 	for id=1,120 do
-		tooltip:SetAction(id)
 		local name = ""
 		local rank = ""
 		if GetActionTexture(id) then
+			tooltip:SetAction(id)
 			if GetActionText(id) then
 				name = GetActionText(id)
 				for i=1, 36 do
